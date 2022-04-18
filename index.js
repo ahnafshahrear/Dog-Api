@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const dogRouter = require("./routers/dog-router");
+
 mongoose
 	.connect("mongodb://localhost:27017/DogsDB")
 	.then(() => {
@@ -13,6 +15,8 @@ mongoose
 
 const app = express();
 app.use(express.json());
+
+app.use("/api/dogs", dogRouter);
 
 app.listen(3000, ()=>{
     console.log("Listening on port 3000...");
